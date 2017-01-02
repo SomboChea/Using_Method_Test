@@ -6,6 +6,7 @@ namespace Method_Test
     class Math_Cal
     {
         static bool save_setting = false;
+        static string save_latest_result;
 
         static bool setting(bool name)
         {
@@ -19,6 +20,12 @@ namespace Method_Test
             return save_setting;
         }
 
+        static string setLatestSaved(string res)
+        {
+            save_latest_result = res;
+            return save_latest_result;
+        }
+
         static void Main()
         {
             //SumMin = 1-2+3-4+5...+-(n);
@@ -28,6 +35,7 @@ namespace Method_Test
             
             
             int n=0;
+            string res = "";
             again:
             math ma = new math();
             
@@ -65,18 +73,26 @@ namespace Method_Test
                     case 1:
                         Console.Write("\n\tSUM MINUS => ");
                         Console.Write(" " + ma.SumMin(n));
+                        res = " " + ma.SumMin(n);
+                        setLatestSaved(res);
                         break;
                     case 2:
                         Console.Write("\n\tPOWER X => ");
                         Console.Write(" " + ma.PowX(n));
+                        res = " " + ma.PowX(n);
+                        setLatestSaved(res);
                         break;
                     case 3:
                         Console.Write("\n\tFIBONACCI => ");
                         Console.Write(" " + ma.Fibonacci(n));
+                        res = " " + ma.Fibonacci(n);
+                        setLatestSaved(res);
                         break;
                     case 4:
                         Console.Write("\n\tFACTORIAL FIB => ");
                         Console.Write(" " + ma.FactFib(n));
+                        res = " " + ma.FactFib(n);
+                        setLatestSaved(res);
                         break;
                     default:
                         Console.Clear();
@@ -92,21 +108,29 @@ namespace Method_Test
                         Console.Write("\n\tSUM MINUS => ");
                         ma.display("SumMin", n);
                         Console.Write(" = " + ma.SumMin(n));
+                        res = ma.getRes() + " = " + ma.SumMin(n);
+                        setLatestSaved(res);
                         break;
                     case 2:
                         Console.Write("\n\tPOWER X => ");
                         ma.display("PowX", n);
                         Console.Write(" = " + ma.PowX(n));
+                        res = ma.getRes() + " = " + ma.PowX(n);
+                        setLatestSaved(res);
                         break;
                     case 3:
                         Console.Write("\n\tFIBONACCI => ");
                         ma.display("Fibonacci", n);
                         Console.Write(" = " + ma.Fibonacci(n));
+                        res = ma.getRes() + " = " + ma.Fibonacci(n);
+                        setLatestSaved(res);
                         break;
                     case 4:
                         Console.Write("\n\tFACTORIAL FIB => ");
                         ma.display("FactFib", n);
                         Console.Write(" = " + ma.FactFib(n));
+                        res = ma.getRes() + " = " + ma.FactFib(n);
+                        setLatestSaved(res);
                         break;
                     default:
                         Console.Clear();
@@ -131,12 +155,14 @@ namespace Method_Test
             Console.WriteLine("\t::                                                           ::");
             Console.WriteLine("\t::      c. Exit                                              ::");
             Console.WriteLine("\t::                                                           ::");
+            Console.WriteLine("\t::      p. Show Latest Result                                ::");
+            Console.WriteLine("\t::                                                           ::");
             Console.WriteLine("\t::      s. Setting                                           ::");
             Console.WriteLine("\t::                                                           ::");
             Console.WriteLine("\t::===========================================================::\n");
             Console.WriteLine("\t                Choose character = ");
             again_opt:
-            Console.SetCursorPosition(43, 18);
+            Console.SetCursorPosition(43, 20);
             char opt = char.Parse(Console.ReadLine());
 
             switch (opt)
@@ -152,6 +178,9 @@ namespace Method_Test
                     break;
                 case 'c':
                     System.Environment.Exit(0);
+                    break;
+                case 'p':
+                    goto show_latest_res;
                     break;
                 case 's':
                     goto setting;
@@ -171,8 +200,8 @@ namespace Method_Test
                 saved_msg[0] = "(Default)";
             }
             Console.WriteLine("\n\t1. LONG RESULT " + saved_msg[0]);
-            Console.WriteLine("\t2. SHORT RESULT " + saved_msg[1]);
-            Console.WriteLine("\t0. BACK \n");
+            Console.WriteLine("\n\t2. SHORT RESULT " + saved_msg[1]);
+            Console.WriteLine("\n\t0. BACK \n");
             again_saved_default:
             Console.Write("\tEnter number: ");
             int num_set = int.Parse(Console.ReadLine());
@@ -194,7 +223,20 @@ namespace Method_Test
                     break;
             }
             goto again_after_saved;
+
+            show_latest_res:
+            if (save_latest_result != null)
+            {
+                Console.WriteLine("\nLatest Result is : " + save_latest_result);
+                goto again_after_saved;
+            } else
+            {
+                Console.WriteLine("\n You don't have saved!");
+                goto again_after_saved;
+            }
+
             Console.ReadKey();
+
         }
     }
 }

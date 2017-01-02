@@ -156,9 +156,19 @@ namespace MathMS
             return factFib;
         }
 
+        public string ResStr;
+        public void setRes(string res)
+        {
+            ResStr = res;
+        }
+        public string getRes()
+        {
+            return ResStr;
+        }
         public void display(string name, int n)
         {
             string[] names = new string[] { "SumMin", "Fibonacci","PowX","FactFib" };
+            string res_sumin = "", res_fib = "", res_powx = "", res_factfib = "";
             if (name == names[0])
             {
                 for (int i = 1; i <= n; i++)
@@ -166,35 +176,52 @@ namespace MathMS
                     if (i % 2 == 0)
                     {
                         Console.Write("-" +i);
+                        res_sumin += "-" + i;
                     }
                     else
                     {
                         if (i == 1)
+                        {
                             Console.Write(i);
+                            res_sumin += i;
+                        }
                         else
-                            Console.Write("+" +i);
+                        {
+                            Console.Write("+" + i);
+                            res_sumin += "+" + i;
+                        }
                     }
                 }
+
+                setRes(res_sumin);
             }
             else  if (name == names[1])
             {
                 int a = 1, b = 1, c;
                 Console.Write(a + "+" + b);
+                res_fib += a + "+" + b;
                 for (int i = 0; i < n - 2; i++)
                 {
                     c = a + b;
                     a = b;
                     b = c;
                     Console.Write("+" + c);
+                    res_fib += "+" + c;
                 }
+
+                setRes(res_fib);
             }
             else if (name == names[2])
             {
                 for(int i = 1; i <= n; i++)
                 {
                     Console.Write(i + "*");
+                    res_powx += i + "*";
                 }
                 Console.Write("\b");
+                res_powx += "\b";
+
+                setRes(res_powx);
             }
             else if (name == names[3])
             {
@@ -207,13 +234,18 @@ namespace MathMS
                     {
                         b = c;
                         Console.Write(j+"!/"+c+"+");
+                        res_factfib += j + "!/" + c + "+";
                     }
                     else
                     {
                         Console.Write(j + "!/" + d + "+");
+                        res_factfib += j + "!/" + d + "+";
                     }
                 }
                 Console.Write("\b");
+                res_factfib += "\b";
+
+                setRes(res_factfib);
             }
             else
             {
