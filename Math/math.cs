@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MathMS
 {
@@ -94,6 +90,7 @@ namespace MathMS
             return p;
         }
 
+        //PowX = 1*2*3*4*5...*n;
         public double PowX(int n)
         {
             double powX = 1;
@@ -104,6 +101,7 @@ namespace MathMS
             return powX;
         }
 
+        //Fibonacci = 1+1+2+3+5...(n-1)+(n-2);
         public double Fibonacci(int n)
         {
             int a=1, b=1, c;
@@ -119,6 +117,7 @@ namespace MathMS
             return Fib;
         }
 
+        //SumMin = 1-2+3-4+5...+-(n);
         public double SumMin(int n)
         {
             double sumMi = 0;
@@ -133,6 +132,7 @@ namespace MathMS
             return sumMi;
         }
 
+        //FactFib = 1!/1+2!/1+3!/2+4!/3+5!/5.....+(n!)/((n-1)+(n-2));
         public double FactFib(int n)
         {
             double factFib = 0, fact = 1;
