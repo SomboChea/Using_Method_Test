@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Group : SN1 | CHEA SAMBO
+
+using System;
 using MathMS;
 
 namespace Method_Test
@@ -201,6 +203,7 @@ namespace Method_Test
             }
             Console.WriteLine("\n\t1. LONG RESULT " + saved_msg[0]);
             Console.WriteLine("\n\t2. SHORT RESULT " + saved_msg[1]);
+            Console.WriteLine("\n\t3. RESET ALL ");
             Console.WriteLine("\n\t0. BACK \n");
             again_saved_default:
             Console.Write("\tEnter number: ");
@@ -215,6 +218,12 @@ namespace Method_Test
                     setting(true);
                     Console.Write("\tSaved to SHORT RESULT!");
                     break;
+                case 3:
+                    setting(false);
+                    setLatestSaved(null);
+                    Console.Write("\tAll values were resetted!");
+                    goto again_after_saved;
+                    break;
                 case 0:
                     goto again_back_seeting;
                     break;
@@ -227,11 +236,11 @@ namespace Method_Test
             show_latest_res:
             if (save_latest_result != null)
             {
-                Console.WriteLine("\nLatest Result is : " + save_latest_result);
+                Console.WriteLine("\n\tLatest Result is : " + save_latest_result);
                 goto again_after_saved;
             } else
             {
-                Console.WriteLine("\n You don't have saved!");
+                Console.WriteLine("\n\tYou don't have saved!");
                 goto again_after_saved;
             }
 
