@@ -39,9 +39,9 @@ namespace Method_Test
 
 
                 int n = 0;
-                string res = "";
-            again:
+                string res = "";     
                 math ma = new math();
+            again:
 
                 //Show Menu
                 Console.WriteLine("\t       ___               _            ___  _               ");
@@ -64,11 +64,37 @@ namespace Method_Test
 
                 if (n == 0)
                 {
-                    Console.SetCursorPosition(35, 18);
-                    n = int.Parse(Console.ReadLine());
+                    try
+                    {
+
+                        Console.SetCursorPosition(35, 18);
+                        n = int.Parse(Console.ReadLine());
+
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine("\n\t Warning!!! -> You must input n value!");
+                        Console.ReadKey();
+                        Console.Clear();
+                        goto again;
+                    }
                 }
-                Console.Write("\n\tEnter option number : ");
-                int option = int.Parse(Console.ReadLine());
+
+                int option = 0;
+                try
+                {
+
+                    Console.Write("\n\tEnter option number : ");
+                    option = int.Parse(Console.ReadLine());
+
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine("\n\tWarning!!! -> You must choose one option to continue!");
+                    Console.ReadKey();
+                    Console.Clear();
+                    goto again;
+                }
 
                 if (save_setting == true)
                 {
@@ -166,8 +192,21 @@ namespace Method_Test
                 Console.WriteLine("\t::===========================================================::\n");
                 Console.WriteLine("\t                Choose character = ");
             again_opt:
-                Console.SetCursorPosition(43, 20);
-                char opt = char.Parse(Console.ReadLine());
+                char opt = 'x';
+                try
+                {
+
+                    Console.SetCursorPosition(43, 20);
+                    opt = char.Parse(Console.ReadLine());
+
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine("\n\tWarning!!! -> You must choose one option to continue!");
+                    Console.ReadKey();
+                    Console.Clear();
+                    goto again_back_seeting;
+                }
 
                 switch (opt)
                 {
@@ -209,22 +248,34 @@ namespace Method_Test
                 Console.WriteLine("\n\t3. RESET ALL ");
                 Console.WriteLine("\n\t0. BACK \n");
             again_saved_default:
-                Console.Write("\tEnter number: ");
-                int num_set = int.Parse(Console.ReadLine());
+                int num_set = 0;
+                try
+                {
+
+                    Console.Write("\tEnter number: ");
+                    num_set = int.Parse(Console.ReadLine());
+
+                }
+                catch(FormatException e)
+                {
+                    Console.WriteLine("\n\tWarning!!! -> You haven't save your setting!");
+                    Console.ReadKey();
+                }
+
                 switch (num_set)
                 {
                     case 1:
                         setting(false);
-                        Console.Write("\tSaved to LONG RESULT!");
+                        Console.Write("\n\tSaved to LONG RESULT!");
                         break;
                     case 2:
                         setting(true);
-                        Console.Write("\tSaved to SHORT RESULT!");
+                        Console.Write("\n\tSaved to SHORT RESULT!");
                         break;
                     case 3:
                         setting(false);
                         setLatestSaved(null);
-                        Console.Write("\tAll values were resetted!");
+                        Console.Write("\n\tAll values were resetted!");
                         goto again_after_saved;
                         break;
                     case 0:
@@ -251,7 +302,8 @@ namespace Method_Test
 
                 Console.ReadKey();
 
-            } else
+            }
+            else
             {
                 Console.WriteLine("\n\tYou don't have enough permission to use \n\n\tthis program, or it error on arguments!\n\n\tPlease set it to \"main\" \n\n\tGood bye!!!");
                 Console.ReadKey();
