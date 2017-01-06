@@ -104,15 +104,23 @@ namespace MathMS
         //Fibonacci = 1+1+2+3+5...(n-1)+(n-2);
         public double Fibonacci(int n)
         {
-            int a=1, b=1, c;
-            double Fib = a+b;
-            for(int i = 0; i < n-2; i++)
-            {
-                c = a + b;
-                a = b;
-                b = c;
-                Fib += c;
 
+            int a = 1, b = 1, c;
+            double Fib = a + b;
+            if (n == 1)
+            {
+                return 1;
+            }
+            else
+            {
+                for (int i = 0; i < n - 2; i++)
+                {
+                    c = a + b;
+                    a = b;
+                    b = c;
+                    Fib += c;
+
+                }
             }
             return Fib;
         }
@@ -197,16 +205,26 @@ namespace MathMS
             }
             else  if (name == names[1])
             {
+
                 int a = 1, b = 1, c;
-                Console.Write(a + "+" + b);
-                res_fib += a + "+" + b;
-                for (int i = 0; i < n - 2; i++)
+                
+                if (n == 1)
                 {
-                    c = a + b;
-                    a = b;
-                    b = c;
-                    Console.Write("+" + c);
-                    res_fib += "+" + c;
+                    res_fib += 1;
+                    Console.Write("1");
+                }
+                else
+                {
+                    Console.Write(a + "+" + b);
+                    res_fib += a + "+" + b;
+                    for (int i = 0; i < n - 2; i++)
+                    {
+                        c = a + b;
+                        a = b;
+                        b = c;
+                        Console.Write("+" + c);
+                        res_fib += "+" + c;
+                    }
                 }
 
                 setRes(res_fib);

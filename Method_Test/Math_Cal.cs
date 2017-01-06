@@ -2,6 +2,7 @@
 
 using System;
 using MathMS;
+using System.IO;
 
 namespace Method_Test
 {
@@ -9,6 +10,19 @@ namespace Method_Test
     {
         static bool save_setting = false;
         static string save_latest_result;
+
+        static void getSetting()
+        {
+            if (!File.Exists("setting.ini"))
+            {
+                File.WriteAllText("setting.ini", save_setting + "");
+            }
+
+            string strSetting = File.ReadAllText("setting.ini");
+            bool strSet = bool.Parse(strSetting);
+            setting(strSet);
+
+        }
 
         static bool setting(bool name)
         {
@@ -19,6 +33,7 @@ namespace Method_Test
             {
                 save_setting = name;
             }
+            File.WriteAllText("setting.ini", save_setting + "");
             return save_setting;
         }
 
@@ -30,6 +45,7 @@ namespace Method_Test
 
         public void MainMethod(string[] args)
         {
+            getSetting();
             if (args[4] == "main")
             {
                 //SumMin = 1-2+3-4+5...+-(n);
