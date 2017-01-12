@@ -94,11 +94,19 @@ namespace MathMS
         public double PowX(int n)
         {
             double powX = 1;
-            for(int i = 1; i <= n; i++)
+            if (n != 0)
             {
-                powX *= i;
+                for (int i = 1; i <= n; i++)
+                {
+                    powX *= i;
+                }
+
+                return powX;
+            }else
+            { 
+                return 0;
             }
-            return powX;
+           
         }
 
         //Fibonacci = 1+1+2+3+5...(n-1)+(n-2);
@@ -107,22 +115,30 @@ namespace MathMS
 
             int a = 1, b = 1, c;
             double Fib = a + b;
-            if (n == 1)
+            if (n != 0)
             {
-                return 1;
+                if (n == 1)
+                {
+                    return 1;
+                }
+                else
+                {
+                    for (int i = 0; i < n - 2; i++)
+                    {
+                        c = a + b;
+                        a = b;
+                        b = c;
+                        Fib += c;
+
+                    }
+                }
+                return Fib;
             }
             else
             {
-                for (int i = 0; i < n - 2; i++)
-                {
-                    c = a + b;
-                    a = b;
-                    b = c;
-                    Fib += c;
-
-                }
+                return 0;
             }
-            return Fib;
+           
         }
 
         //SumMin = 1-2+3-4+5...+-(n);
@@ -164,15 +180,20 @@ namespace MathMS
             return factFib;
         }
 
+        //Set resource;
         public string ResStr;
         public void setRes(string res)
         {
             ResStr = res;
         }
+
+        //Get resource;
         public string getRes()
         {
             return ResStr;
         }
+
+        //Display
         public void display(string name, int n)
         {
             string[] names = new string[] { "SumMin", "Fibonacci","PowX","FactFib" };
@@ -207,25 +228,33 @@ namespace MathMS
             {
 
                 int a = 1, b = 1, c;
-                
-                if (n == 1)
+                if (n != 0)
                 {
-                    res_fib += 1;
-                    Console.Write("1");
+                    if (n == 1)
+                    {
+                        res_fib += 1;
+                        Console.Write("1");
+                    }
+                    else
+                    {
+                        Console.Write(a + "+" + b);
+                        res_fib += a + "+" + b;
+                        for (int i = 0; i < n - 2; i++)
+                        {
+                            c = a + b;
+                            a = b;
+                            b = c;
+                            Console.Write("+" + c);
+                            res_fib += "+" + c;
+                        }
+                    }
                 }
                 else
                 {
-                    Console.Write(a + "+" + b);
-                    res_fib += a + "+" + b;
-                    for (int i = 0; i < n - 2; i++)
-                    {
-                        c = a + b;
-                        a = b;
-                        b = c;
-                        Console.Write("+" + c);
-                        res_fib += "+" + c;
-                    }
+                    res_fib += 0;
+                    Console.Write("0");
                 }
+                
 
                 setRes(res_fib);
             }

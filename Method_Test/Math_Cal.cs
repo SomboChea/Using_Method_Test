@@ -19,6 +19,13 @@ namespace Method_Test
             }
 
             string strSetting = File.ReadAllText("setting.ini");
+
+            if (strSetting!="True" || strSetting != "False")
+            {
+                File.WriteAllText("setting.ini", "False");
+                strSetting = File.ReadAllText("setting.ini");
+            }
+            
             bool strSet = bool.Parse(strSetting);
             setting(strSet);
 
@@ -214,6 +221,7 @@ namespace Method_Test
 
                     Console.SetCursorPosition(43, 20);
                     opt = char.Parse(Console.ReadLine());
+                    opt = Char.ToLower(opt);
 
                 }
                 catch (FormatException e)
@@ -315,8 +323,6 @@ namespace Method_Test
                     Console.WriteLine("\n\tYou don't have saved!");
                     goto again_after_saved;
                 }
-
-                Console.ReadKey();
 
             }
             else
